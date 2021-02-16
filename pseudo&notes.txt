@@ -20,3 +20,5 @@ the pawn can move diagonally only for eating another piece
  I need to creae a tree of possible moves: 
   - The king has special conditions becuase of the checkmate
   - bts of the moves, if there isn't none that means that is an invalid move
+
+For the pawn switch when reached the end Board  
