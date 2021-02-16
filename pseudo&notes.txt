@@ -1,0 +1,22 @@
+I'm trying to aporach this game wiht a BDD way
+
+What is the main thing that my game does?
+I have some difficulty this way, maybe I don't have enough experience with this kind testing 
+I'll try to approach this problem form the inside out
+
+The gaol of the game is to checkmate the opponemt
+
+The elemets of the game: 
+- 2 Players ( Have a name and color)
+
+- Board ( has a grid structure, with rows and columns)
+
+- Pieces (move, have a position, have color(BLACK/WIHTE) ) 6 different kinds ( rook, bishop, pawn, king, queen, knight)
+  each kind moves differently ( different directions )
+
+I need to see if the path that a piece should take is valid, for example: along the path is there any other piece
+the pawn can move diagonally only for eating another piece
+
+ I need to creae a tree of possible moves: 
+  - The king has special conditions becuase of the checkmate
+  - bts of the moves, if there isn't none that means that is an invalid move
