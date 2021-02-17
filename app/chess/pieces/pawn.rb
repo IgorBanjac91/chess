@@ -1,17 +1,15 @@
 module Chess
-  class Pawn
+  class Pawn < Piece
     
     attr_reader :white_directions, :black_directions, 
                 :white_take, :black_take
-    attr_accessor :position, :color
-
+    
     def initialize( input = {} )
-      @color = input.fetch(:color)
-      @position = input.fetch(:position, [0, 0])
       @black_directions = [[0, -2], [0, -1]]
       @white_directions = [[0, 2], [0, 1]]
       @white_take = [[1, 1], [-1, 1]]
       @black_take = [[1, -1], [-1, -1]]
+      super
     end
 
 
@@ -49,32 +47,6 @@ module Chess
       arr
     end
     
-    private
-    
-      def white?
-        true if color == :white
-      end
-      
-      def black?
-        true if color == :black
-      end
-      
-      def first_move?
-        if white?
-          return true if position[1] == 1
-        elsif black?
-          return true if position[1] == 6
-        end
-      end
-
-      def front_piece?(board)
-        x, y = position[0], position[1]
-        if white?
-          return true unless board.grid[x][y + 1].empty?
-        elsif black?
-          return true unless board.grid[x][y - 1].empty?
-        end
-      end
   end
 end
 

@@ -27,20 +27,22 @@ module Chess
     end
     
     describe '#choose_piece' do 
+
       before(:each) do 
         game.play
       end
-    context 'when there is a piece' do 
-      it 'returns the piece' do 
-        
+
+      context 'when there is a piece' do 
+        it 'returns the piece' do 
+          
+        end
+      end
+
+      context 'whein there is no piece' do 
+        it 'returns nil' do 
+          
+        end
       end
     end
-
-    context 'whein there is no piece' do 
-      it 'returns nil' do 
-        
-      end
-    end
-
   end
 end
