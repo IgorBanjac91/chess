@@ -22,3 +22,5 @@ the pawn can move diagonally only for eating another piece
   - bts of the moves, if there isn't none that means that is an invalid move
 
 For the pawn switch when reached the end Board  
+
+16/02/21 refactor Board class 

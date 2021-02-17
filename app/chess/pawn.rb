@@ -14,6 +14,7 @@ module Chess
       @black_take = [[1, -1], [-1, -1]]
     end
 
+
     def allowed_moves(board, arr = [])
       return arr if front_piece?(board)
       if white?
@@ -27,7 +28,7 @@ module Chess
           x = position[0] + direction[0]
           y = position[1] + direction[1]
           unless board.grid[x][y].empty?
-            arr << [x, y] if board.grid[x][y].content.color == :black
+            arr << [x, y] if board.black_piece?([x, y])
           end
         end
       else
@@ -41,7 +42,7 @@ module Chess
           x = position[0] + direction[0]
           y = position[1] + direction[1]
           unless board.grid[x][y].empty?
-            arr << [x, y] if board.grid[x][y].content.color == :white
+            arr << [x, y] if board.white_piece?([x, y])
           end
         end
       end

@@ -9,6 +9,20 @@ module Chess
       arrange_pawns
     end
     
+    def black_piece?(coordinates)
+      x, y = coordinates[0], coordinates[1]
+      tail = grid[x][y]
+      return false if tail.empty? 
+      tail.content.color == :black ? true : false
+    end
+
+    def white_piece?(coordinates)
+      x, y = coordinates[0], coordinates[1]
+      tail = grid[x][y]
+      return false if tail.empty? 
+      tail.content.color == :white ? true : false
+    end
+
     private
     
     def set_grid
@@ -23,5 +37,6 @@ module Chess
         col[1].content = Pawn.new( { color: :white, position: [index, 1] } )
       end    
     end
+
   end
 end
