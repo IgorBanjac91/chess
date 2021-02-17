@@ -30,20 +30,15 @@ module Chess
       before(:each) do 
         game.play
       end
-      context 'when the game starts' do 
-        it 'returns a white pawn on c2' do 
-          piece = game.choose_piece('c2')
-          expect(piece).to be_a(Pawn)
-          expect(piece.color).to eq(:white)
-          expect(piece.position).to eq([2, 1])
-        end
+    context 'when there is a piece' do 
+      it 'returns the piece' do 
         
-        it 'returns a black pawn on c7' do 
-          piece = game.choose_piece('c7')
-          expect(piece).to be_a(Pawn)
-          expect(piece.color).to eq(:black)
-          expect(piece.position).to eq([2, 6])
-        end
+      end
+    end
+
+    context 'whein there is no piece' do 
+      it 'returns nil' do 
+        
       end
     end
 

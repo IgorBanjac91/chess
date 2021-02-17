@@ -19,13 +19,12 @@ module Chess
         end
       end
     end
-
-    before(:each) do 
-      board.arrange_pieces
-    end
-
+    
     describe "#black_piece?" do 
-
+      
+      before(:each) do 
+        board.arrange_pieces
+      end
 
       it 'return true when the coordinates point to a black piece' do 
         expect(board.black_piece?([1, 6])).to be true
@@ -42,6 +41,10 @@ module Chess
     end
     
     describe "#white_piece?" do
+
+      before(:each) do 
+        board.arrange_pieces
+      end
       
       it 'return true when the coordinates point to a white piece' do 
         expect(board.white_piece?([1, 1])).to be true
@@ -53,6 +56,15 @@ module Chess
       
       it 'return false when the coordinates point to a black piece' do 
         expect(board.white_piece?([1, 6])).to be false
+      end
+
+    end
+
+    describe "#set_piece" do
+      
+      it 'sets a piece on the board' do 
+        board.set_piece(Pawn, :white, [2, 2])
+        expect(board.white_piece?([2, 2])).to be true
       end
 
     end
