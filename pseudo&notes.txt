@@ -18,3 +18,17 @@ The elemets of the game:
   ROOK
   - It can move inline, 4 possible directions
 
+  BISHOP
+  - allowed moves, 
+
+  QUEEN 
+  - #allowed_move, can move like a bishop and a rook, I moved the movement logic the the superclass Pice
+   this way teh code i more readable and more dry, i feel like i can improve the design, it will be great if
+   i could get rid off the dependecie of board
+
+  KNIGHT
+  - The knight has his unique way of moving on the board, so i will just ceate a method directly in the Knight class
+    * write the integration test, for testing the possibele moves
+
+  KING
+

@@ -28,9 +28,17 @@ module Chess
       tail.content.color == :white ? true : false
     end
 
+    def content_at(coordinates)
+      x = coordinates[0]
+      y = coordinates[1]
+      grid[x][y]
+    end
+
     def set_piece(type, color, position)
       x, y = position[0], position[1]
-      grid[x][y].content = type.new( { color: color, position: position } )
+      piece = type.new( { color: color, position: position } )
+      grid[x][y].content = piece
+      piece
     end
     
     def get_piece(position)
