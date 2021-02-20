@@ -149,5 +149,30 @@ module Chess
 
     end
 
+    describe "#balck_pieces_moves" do 
+      
+      it "returns all the black piieces moves" do 
+        board.set_piece(Pawn,   :black, [3, 3])
+        board.set_piece(Rook,   :black, [7, 7])
+        board.set_piece(Bishop, :white, [0, 0])
+        expect(board.black_pieces_moves).to contain_exactly [3, 2], # Pawn moves
+                                                      [7, 6], [7, 5], [7, 4], [7, 3], [7, 2], [7, 1], [7, 0], # Rook vertical moves
+                                                      [6, 7], [5, 7], [4, 7], [3, 7], [2, 7], [1, 7], [0, 7]  # Rook horizontal moves
+      end
+    end
+
+    describe "#white_pieces_moves" do 
+      
+      it "returns all the black piieces moves" do 
+        board.set_piece(Pawn,   :white, [3, 3])
+        board.set_piece(Rook,   :white, [7, 7])
+        board.set_piece(Bishop, :black, [0, 0])
+        expect(board.white_pieces_moves).to contain_exactly [3, 4], # Pawn moves
+                                                      [7, 6], [7, 5], [7, 4], [7, 3], [7, 2], [7, 1], [7, 0], # Rook vertical moves
+                                                      [6, 7], [5, 7], [4, 7], [3, 7], [2, 7], [1, 7], [0, 7]  # Rook horizontal moves
+      end
+    end
+
+    
   end
 end

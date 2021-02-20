@@ -2,7 +2,7 @@ module Chess
   class Piece
 
     VERTICAL_DIRECTIONS = [[0, 1], [0, -1]]
-    ORIZONTAL_DIRECTIONS = [[1, 0], [-1, 0]]
+    HORIZONTAL_DIRECTIONS = [[1, 0], [-1, 0]]
     DIAGONAL_DIRECTIONS = [[1, 1], [-1, 1], [-1, -1], [1,-1]]
 
     attr_accessor :color, :position
@@ -53,8 +53,8 @@ module Chess
       arr
     end
 
-    def orizontal_moves(board, arr = [], move_range = 7)
-      ORIZONTAL_DIRECTIONS.each do |direction| 
+    def horizontal_moves(board, arr = [], move_range = 7)
+      HORIZONTAL_DIRECTIONS.each do |direction| 
         dist_par = 1
         y = position[1]
         pos_x = position[0]
@@ -104,7 +104,7 @@ module Chess
       end
       arr
     end
-
+    
     private
 
       def front_piece?(board)

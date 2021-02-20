@@ -47,8 +47,49 @@ module Chess
       tile.empty? ? nil : tile.content
     end
 
+    def black_pieces
+      pieces = []
+      board_coordinates.each do |coordinates|
+        pieces << get_piece(coordinates) if black_piece?(coordinates)
+      end
+      pieces
+    end
+
+    def black_pieces_moves
+      moves = []
+      black_pieces.each do |piece|
+        moves += piece.allowed_moves(self)
+      end
+      moves
+    end
+
+    def white_pieces
+      pieces = []
+      board_coordinates.each do |coordinates|
+        pieces << get_piece(coordinates) if white_piece?(coordinates)
+      end
+      pieces
+    end
+
+    def white_pieces_moves
+      moves = []
+      white_pieces.each do |piece|
+        moves += piece.allowed_moves(self)
+      end
+      moves
+    end
+
     private
     
+    def board_coordinates
+      arr = []
+      grid.each do |col|
+        col.each do |tile|
+          arr << [tile.x, tile.y]
+        end
+      end
+      arr
+    end
 
     def set_grid
       Array.new(8) { |c| Array.new(8) { |r| Tile.new({ x: c, y: r }) } }

@@ -8,7 +8,7 @@ module Chess
     def allowed_moves(board, arr = [])
       arr += diagonal_moves(board)
       arr += vertical_moves(board)
-      arr += orizontal_moves(board)
+      arr += horizontal_moves(board)
     end
   end
 end
