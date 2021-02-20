@@ -5,6 +5,7 @@ module Chess
   RSpec.describe Game do 
 
     let(:game) { Game.new }
+    let(:board) { game.board}
 
     describe "#players" do 
       it 'has two players' do 
@@ -26,23 +27,38 @@ module Chess
       expect(game.board).to be_a(Board)
     end
     
-    describe '#choose_piece' do 
+    describe '#check_to' do 
 
-      before(:each) do 
-        game.play
+      context "when the check is on whites" do 
+
+        it 'returns true if king in check' do 
+          board.set_piece(King,   :white, [3, 3])
+          board.set_piece(Bishop, :black, [5, 5])
+          expect(game.check_to?(:white)).to be true
+        end
+
+        it 'returns false if king is not in check' do 
+          board.set_piece(King,   :white, [4, 3])
+          board.set_piece(Bishop, :black, [5, 5])
+          expect(game.check_to?(:white)).to be false
+        end
       end
+      
+      context "when the check is on blacks" do 
+        
+        it "returns ture if king in check" do 
+          board.set_piece(King,   :black, [3, 3])
+          board.set_piece(Bishop, :white, [5, 5])
+          expect(game.check_to?(:black)).to be true
+        end
 
-      context 'when there is a piece' do 
-        it 'returns the piece' do 
-          
+        it 'returns false if king is not in check' do 
+          board.set_piece(King,   :black, [4, 3])
+          board.set_piece(Bishop, :white, [5, 5])
+          expect(game.check_to?(:black)).to be false
         end
       end
 
-      context 'whein there is no piece' do 
-        it 'returns nil' do 
-          
-        end
-      end
     end
   end
 end

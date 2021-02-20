@@ -79,6 +79,17 @@ module Chess
       moves
     end
 
+    def get_king(color)
+      if color == :white
+        white_pieces.each do |piece|
+          return piece if piece.instance_of?(King) && piece.color == color
+        end
+      elsif color == :black
+        black_pieces.each do |piece|
+          return piece if piece.instance_of?(King) && piece.color == color
+        end
+      end
+    end
     private
     
     def board_coordinates

@@ -45,6 +45,15 @@ module Chess
       
     end
 
+    def check_to?(color)
+      if color == :white
+        return true if board.black_pieces_moves.include?(board.get_king(:white).position)
+      else
+        return true if board.white_pieces_moves.include?(board.get_king(:black).position)
+      end
+      false
+    end
+
     def valid_move?(moves, pos, color)
       moves.include?(pos) && !check_to?(color)
     end
