@@ -8,7 +8,7 @@ The elemets of the game:
 - Pieces (move, have a position, have color(BLACK/WIHTE) ) 6 different kinds ( rook, bishop, pawn, king, queen, knight)
   each kind moves differently ( different directions )
 
- I need to creae a tree of possible moves: 
+I need to creae a tree of possible moves: 
   - The king has special conditions becuase of the checkmate
   - bts of the moves, if there isn't none that means that is an invalid move
 
@@ -30,5 +30,37 @@ The elemets of the game:
   - The knight has his unique way of moving on the board, so i will just ceate a method directly in the Knight class
     * write the integration test, for testing the possibele moves
 
-  KING
+  Game flow: 
+  - Whites start first
+  - whites chose a piece 
+    if is a valid pice ( has_moves?, white? )
+      get_piece
+    else
+      chose another piece
+  - chose_new_position
+    if its a valid position ( allowed_move? ) 
+      set new position
+    else
+      choose another position
+  - check if is a check or a checkmate ( game_over? )
+    if yes
+      ends game, white wins 
+    else
+  - Black turn 
+  - chose_piece
+    if is a valid pice ( has_moves?, white? )
+      get_piece
+    else
+      chose another piece
+  - chose_new_position
+    if its a valid position ( allowed_move? ) 
+      set new position
+    else
+      choose another position
+  - check if is a check or a checkmate ( game_over? )
+    if yes
+      ends game, black wins 
+    else
+    Repeat again
+      
 

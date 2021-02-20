@@ -8,14 +8,30 @@ module Chess
 
     def play
       board.arrange_pieces
+      whties = players[0]
+      blacks = players[1]
+      until game_over?
+        # whties
+        piece = choose_piece(pos)
+        
+
+
+      end
+      
     end
 
-    def choose_piece(pos)
+    def choose_piece
+      puts 'Choose a piece: '
+      pos = gets.chomp
       coordinates = algebric_to_xy(pos)
       x = coordinates[0]
       y = coordinates[1]
       tile = board.grid[x][y]
-      tile.content
+      contenet = tile.content
+    end
+
+    def valid_pice?
+
     end
 
     private
