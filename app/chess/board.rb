@@ -1,8 +1,8 @@
 module Chess
   class Board
     attr_accessor :grid
-    def initialize
-      @grid = set_grid
+    def initialize(input = {})
+      @grid = input.fetch(:grid, set_grid)
     end
 
     def arrange_pieces
@@ -28,7 +28,7 @@ module Chess
       tail.content.color == :white ? true : false
     end
 
-    def content_at(coordinates)
+    def tile_at(coordinates)
       x = coordinates[0]
       y = coordinates[1]
       grid[x][y]
@@ -90,61 +90,67 @@ module Chess
         end
       end
     end
+
+    def empty_tile(pos)
+      x = pos[0]
+      y = pos[1]
+      grid[x][y].content = " "
+    end
     private
     
-    def board_coordinates
-      arr = []
-      grid.each do |col|
-        col.each do |tile|
-          arr << [tile.x, tile.y]
+      def board_coordinates
+        arr = []
+        grid.each do |col|
+          col.each do |tile|
+            arr << [tile.x, tile.y]
+          end
         end
+        arr
       end
-      arr
-    end
 
-    def set_grid
-      Array.new(8) { |c| Array.new(8) { |r| Tile.new({ x: c, y: r }) } }
-    end
-    
-    def arrange_pawns
-      grid.each_with_index do |col, index| 
-        set_piece(Pawn, :black, [index, 6])
+      def set_grid
+        Array.new(8) { |c| Array.new(8) { |r| Tile.new({ x: c, y: r }) } }
       end
-      grid.each_with_index do |col, index| 
-        set_piece(Pawn, :white, [index, 1])
-      end    
-    end
+      
+      def arrange_pawns
+        grid.each_with_index do |col, index| 
+          set_piece(Pawn, :black, [index, 6])
+        end
+        grid.each_with_index do |col, index| 
+          set_piece(Pawn, :white, [index, 1])
+        end    
+      end
 
-    def arrange_rooks
-      set_piece(Rook, :black, [0, 7])
-      set_piece(Rook, :black, [7, 7])
-      set_piece(Rook, :white, [0, 0])
-      set_piece(Rook, :white, [7, 0])
-    end
+      def arrange_rooks
+        set_piece(Rook, :black, [0, 7])
+        set_piece(Rook, :black, [7, 7])
+        set_piece(Rook, :white, [0, 0])
+        set_piece(Rook, :white, [7, 0])
+      end
 
-    def arrange_bishops
-      set_piece(Bishop, :black, [2, 7])
-      set_piece(Bishop, :black, [5, 7])
-      set_piece(Bishop, :white, [2, 0])
-      set_piece(Bishop, :white, [5, 0])
-    end
+      def arrange_bishops
+        set_piece(Bishop, :black, [2, 7])
+        set_piece(Bishop, :black, [5, 7])
+        set_piece(Bishop, :white, [2, 0])
+        set_piece(Bishop, :white, [5, 0])
+      end
 
-    def arrange_knights
-      set_piece(Knight, :black, [1, 7])
-      set_piece(Knight, :black, [6, 7])
-      set_piece(Knight, :white, [1, 0])
-      set_piece(Knight, :white, [6, 0])
-    end
+      def arrange_knights
+        set_piece(Knight, :black, [1, 7])
+        set_piece(Knight, :black, [6, 7])
+        set_piece(Knight, :white, [1, 0])
+        set_piece(Knight, :white, [6, 0])
+      end
 
-    def arrange_kings
-      set_piece(King, :black, [4, 7])
-      set_piece(King, :white, [4, 0])
-    end
+      def arrange_kings
+        set_piece(King, :black, [4, 7])
+        set_piece(King, :white, [4, 0])
+      end
 
-    def arrange_queens
-      set_piece(Queen, :black, [3, 7])
-      set_piece(Queen, :white, [3, 0])
-    end
+      def arrange_queens
+        set_piece(Queen, :black, [3, 7])
+        set_piece(Queen, :white, [3, 0])
+      end
 
   end
 end

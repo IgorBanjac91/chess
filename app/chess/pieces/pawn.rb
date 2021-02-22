@@ -25,6 +25,7 @@ module Chess
         white_take.each do |direction|
           x = position[0] + direction[0]
           y = position[1] + direction[1]
+          next if off_board?([x, y])
           unless board.grid[x][y].empty?
             arr << [x, y] if board.black_piece?([x, y])
           end
@@ -39,6 +40,7 @@ module Chess
         black_take.each do |direction|
           x = position[0] + direction[0]
           y = position[1] + direction[1]
+          next if off_board?([x, y])
           unless board.grid[x][y].empty?
             arr << [x, y] if board.white_piece?([x, y])
           end

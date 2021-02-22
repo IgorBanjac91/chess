@@ -11,6 +11,16 @@ module Chess
       @position = input.fetch(:position, [0, 0])    
     end
 
+    def move_to(board, pos)
+      old_x = self.position[0]
+      old_y = self.position[1]
+      x = pos[0]
+      y = pos[1]
+      self.position = [x, y]
+      board.tile_at(pos).content = self
+      board.empty_tile([old_x, old_y])
+    end
+
     def white?
       true if color == :white
     end
@@ -34,7 +44,7 @@ module Chess
         y = dir_y + pos_y
         while dist_par <= move_range
           break if off_board?([x, y])
-          unless board.content_at([x, y]).empty?
+          unless board.tile_at([x, y]).empty?
             piece = board.get_piece([x, y])
             if opponent?(piece)
               arr << [x, y]
@@ -114,6 +124,7 @@ module Chess
         elsif black?
           return true unless board.grid[x][y - 1].empty?
         end
+      false
       end
 
       def off_board?(coordinates)

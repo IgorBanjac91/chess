@@ -1,9 +1,10 @@
 module Chess
   class Game
-    attr_reader :players, :board
-    def initialize()
+    attr_accessor :board
+    attr_reader :players
+    def initialize(input = {})
       @players = [Player.new(color: :white), Player.new(color: :black)]
-      @board = Board.new
+      @board = input.fetch(:board, Board.new)
     end
 
     def play
@@ -47,11 +48,38 @@ module Chess
 
     def check_to?(color)
       if color == :white
-        return true if board.black_pieces_moves.include?(board.get_king(:white).position)
+        return true if board.black_pieces_moves.include?(board.get_king(:white).position)  
       else
         return true if board.white_pieces_moves.include?(board.get_king(:black).position)
       end
       false
+    end
+
+    def checkmate_to?(color)
+      if color == :white  
+        board.white_pieces.each do |piece|
+          piece.allowed_moves(board).each do |move|
+            sim_game = Game.new
+            sim_game.board = Board.new grid: board.grid
+            sim_board = sim_game.board
+            piece.move_to(sim_board, move)
+            return false unless sim_game.check_to?(color)
+            sim_game = nil
+          end
+        end
+      else
+        board.black_pieces.each do |piece|
+          piece.allowed_moves(board).each do |move|
+            sim_game = Game.new
+            sim_board = Board.new grid: board.grid
+            sim_board = sim_game.board
+            piece.move_to(sim_board, move)
+            return false unless sim_game.check_to?(color)
+            sim_board = nil
+          end
+        end
+      end
+      true    
     end
 
     def valid_move?(moves, pos, color)

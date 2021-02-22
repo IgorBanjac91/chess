@@ -64,14 +64,5 @@ I need to creae a tree of possible moves:
     Repeat again
       
 
-check_to(piece_color)
-  I need to check all the possible opponent moves
-  if the position of king is in those moves
-  then is check
 
-checkmate_to(piece_color)
-  check if moving the kning solves the problem
-  chech if moving other pieces solves the problem
-  check if a opponent piece can eat the checmaking piece
-  if none of the previous if valid then is checkmate
   
