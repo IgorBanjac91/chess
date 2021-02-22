@@ -114,6 +114,14 @@ module Chess
       end
       arr
     end
+
+    def allowed_moves
+      
+    end
+
+    def allowed_move?(move)
+      self.allowed_moves.include?(move)
+    end
     
     private
 

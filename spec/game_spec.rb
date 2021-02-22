@@ -91,8 +91,11 @@ module Chess
           board.set_piece(Knight, :black, [7, 3])
           expect(game.checkmate_to?(:white)).to be false
         end
-
       end
+    end
+
+    describe '#choose_piece' do 
+
     end
   end
 end
