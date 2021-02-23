@@ -7,6 +7,7 @@ module Chess
 
     def display
       arr = []
+      count = 8
       8.times do |num|
         grid.each_with_index do |column, index|
           tail = column.reverse[num]
@@ -17,7 +18,8 @@ module Chess
             index.even? ? arr << Rainbow(content + " ").black.bg(:whitesmoke) : arr << Rainbow(content + " ").black.bg(:rebeccapurple)
           end
         end
-        puts "#{num} " + arr.join
+        puts "#{count} " + arr.join
+        count -= 1
         arr = []
       end
       puts "  " + ("a".."h").to_a.join(" ")

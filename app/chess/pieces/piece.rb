@@ -17,8 +17,8 @@ module Chess
       x = pos[0]
       y = pos[1]
       self.position = [x, y]
-      board.tile_at(pos).content = self
-      board.empty_tile([old_x, old_y])
+      board.set_piece(self.class, self.color, pos)
+      board.grid[old_x][old_y].content = " "
     end
 
     def white?
@@ -113,14 +113,6 @@ module Chess
         end
       end
       arr
-    end
-
-    def allowed_moves
-      
-    end
-
-    def allowed_move?(move)
-      self.allowed_moves.include?(move)
     end
     
     private

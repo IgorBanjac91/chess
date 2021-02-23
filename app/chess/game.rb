@@ -19,21 +19,24 @@ module Chess
             "#{opponent} wins!"
             break 
           else
+            board.display
             piece = choose_piece
             until off_check_moves?(piece)
               puts "Choose a valid piece to off check"
+              board.display
               piece = choose_piece
             end
             puts "Move to: "
             make_move(piece)
           end
         else
+          board.display
           puts "#{player.color}, choose a piece: "
           piece = choose_piece(player)
           puts "Move to: "
           make_move(piece)
         end
-        player.color == :white ? player == black : player == white
+        player.color == :white ? player = black : player = white
       end
     end
 
@@ -43,15 +46,15 @@ module Chess
   
     def make_move(piece)
       pos = choose_position
-      until valid_move?(piece, pos) && piece.allowed_move?(pos)
-        pos = choose_position
-      end
+      # while valid_move?(piece, pos) && piece.allowed_moves(board).include?(pos)
+      #   pos = choose_position
+      # end
       piece.move_to(board, pos)
     end
 
     def choose_piece(player)
       pos = choose_position
-      until valid_piece?(pos, player.color)
+      until valid_piece?(pos, player)
         if board.content_at(pos).empty?
           puts "Empty tail, choose a piece: "
           pos = choose_position
@@ -64,7 +67,7 @@ module Chess
     end
 
     def valid_piece?(pos, player)
-      return false if board.content_at(pos).empty?
+      return false if board.tile_at(pos).empty?
       piece = board.get_piece(pos)
       return true if piece.color == player.color 
     end
@@ -103,10 +106,6 @@ module Chess
       end
       true    
     end
-
-    # def valid_move?(moves, pos, color)
-    #   moves.include?(pos) && !check_to?(color)
-    # end
 
     def off_check_move?(piece, move)
       sim_game = Game.new

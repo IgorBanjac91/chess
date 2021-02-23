@@ -94,8 +94,19 @@ module Chess
       end
     end
 
-    describe '#choose_piece' do 
+    describe '#make_move' do 
 
+      context "when the move is valid" do 
+        it 'moves a piece and lefts an empty space' do 
+          board.arrange_pieces
+          piece = board.get_piece([0, 1])
+          allow(game).to receive(:choose_position).and_return([0, 1])
+          game.make_move([0, 4])
+          expect(board.grid[0, 1]).to be_empty
+          expect(baord.get_piece([0, 4])).to be piece
+        end
+      end
     end
+
   end
 end
