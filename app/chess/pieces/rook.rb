@@ -1,8 +1,10 @@
 module Chess
   class Rook < Piece
 
-    attr_accessor :orizontal_directions, :vertical_directions
-    def intitialize
+    attr_accessor :orizontal_directions, :vertical_directions, :symbols
+
+    def initialize(input = {})
+      @symbols = { :black => "\u265c", :white => "\u2656" }
       super
     end
 

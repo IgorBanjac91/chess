@@ -5,6 +5,24 @@ module Chess
       @grid = input.fetch(:grid, set_grid)
     end
 
+    def display
+      arr = []
+      8.times do |num|
+        grid.each_with_index do |column, index|
+          tail = column.reverse[num]
+          content = tail.empty? ? " " : tail.content.symbols[tail.content.color]
+          if num.odd?
+            index.even? ? arr << Rainbow(content + " ").black.bg(:rebeccapurple) : arr << Rainbow(content + " ").black.bg(:whitesmoke)
+          else
+            index.even? ? arr << Rainbow(content + " ").black.bg(:whitesmoke) : arr << Rainbow(content + " ").black.bg(:rebeccapurple)
+          end
+        end
+        puts "#{num} " + arr.join
+        arr = []
+      end
+      puts "  " + ("a".."h").to_a.join(" ")
+    end
+    
     def arrange_pieces
       arrange_pawns
       arrange_rooks

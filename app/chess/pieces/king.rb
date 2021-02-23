@@ -1,9 +1,10 @@
 module Chess
   class King < Piece
 
-
+    attr_reader :symbols
 
     def initialize(input = {})
+      @symbols = { :black => "\u265a", :white => "\u2654" }
       super
     end
 

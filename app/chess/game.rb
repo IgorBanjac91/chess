@@ -123,6 +123,11 @@ module Chess
       false
     end
 
+    def opponent(player)
+      player.color == :white ? "Black" : "White"
+    end
+
+
     private
 
       def algebric_to_num(string)

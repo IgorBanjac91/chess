@@ -1,3 +1,5 @@
+require "rainbow"
+
 module Chess
   
 end

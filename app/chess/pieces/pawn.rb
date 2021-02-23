@@ -2,17 +2,18 @@ module Chess
   class Pawn < Piece
     
     attr_reader :white_directions, :black_directions, 
-                :white_take, :black_take
+                :white_take, :black_take, :symbols
     
     def initialize( input = {} )
       @black_directions = [[0, -2], [0, -1]]
       @white_directions = [[0, 2], [0, 1]]
       @white_take = [[1, 1], [-1, 1]]
       @black_take = [[1, -1], [-1, -1]]
+      @symbols = { :black => "\u265f", :white => "\u2659" }
       super
     end
 
-
+    
     def allowed_moves(board, arr = [])
       return arr if front_piece?(board)
       if white?
@@ -50,15 +51,15 @@ module Chess
     end
     
     private
-
-      def first_move?
-        if white?
-          return true if position[1] == 1
-        elsif black?
-          return true if position[1] == 6
-        end
+    
+    def first_move?
+      if white?
+        return true if position[1] == 1
+      elsif black?
+        return true if position[1] == 6
       end
-
+    end
+    
   end
 end
 

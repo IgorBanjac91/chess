@@ -3,7 +3,10 @@ module Chess
 
     KNIHGT_DIRECTIONS = [[2, 1], [2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2], [-2, 1], [-2, -1]]
 
+    attr_reader :symbols
+
     def initialize(input = {})
+      @symbols = { :black => "\u265e", :white => "\u2658" }
       super
     end
 
@@ -29,5 +32,6 @@ module Chess
       end
       arr
     end
+    
   end
 end
