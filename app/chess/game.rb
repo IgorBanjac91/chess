@@ -16,11 +16,14 @@ module Chess
       while  true
         if check_to?(player.color)
           if checkmate_to?(player.color)
+            "Checkmate to #{player.color}"
             "#{opponent} wins!"
             break 
           else
+            puts "#{player.color}, you're under check!! " 
+            puts "#{player.color}, choose a piece: "
             board.display
-            piece = choose_piece
+            piece = choose_piece(player)
             until off_check_moves?(piece)
               puts "Choose a valid piece to off check"
               board.display
@@ -39,23 +42,19 @@ module Chess
         player.color == :white ? player = black : player = white
       end
     end
-
-    def valid_move?(piece, pos)
-      return true if off_check_move?(piece, pos)
-    end
   
     def make_move(piece)
       pos = choose_position
-      # while valid_move?(piece, pos) && piece.allowed_moves(board).include?(pos)
-      #   pos = choose_position
-      # end
+      until  piece.allowed_moves(board).include?(pos) && off_check_move?(piece, pos)
+        pos = choose_position
+      end
       piece.move_to(board, pos)
     end
 
     def choose_piece(player)
       pos = choose_position
       until valid_piece?(pos, player)
-        if board.content_at(pos).empty?
+        if board.tile_at(pos).empty?
           puts "Empty tail, choose a piece: "
           pos = choose_position
         else
@@ -108,11 +107,16 @@ module Chess
     end
 
     def off_check_move?(piece, move)
-      sim_game = Game.new
-      sim_game.board = Board.new grid: board.grid
-      sim_board = sim_game.board
-      piece.move_to(sim_board, move)
-      sim_game.check_to?(piece.color) ? false : true
+      old_x = piece.position[0]
+      old_y = piece.position[1]
+      piece.move_to(board, move)
+      if check_to?(piece.color)
+        piece.move_to(board, [old_x, old_y])
+        return false
+      else
+        piece.move_to(board, [old_x, old_y])
+        return true
+      end
     end
 
     def off_check_moves?(piece)
