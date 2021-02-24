@@ -54,21 +54,25 @@ module Chess
     def choose_piece(player)
       pos = choose_position
       until valid_piece?(pos, player)
+        piece = board.get_piece(pos)
         if board.tile_at(pos).empty?
-          puts "Empty tail, choose a piece: "
-          pos = choose_position
+          puts "Empty tail"
+        elsif piece.allowed_moves(board) == []
+          puts "Pice has no moves"
         else
           puts "You cannot move an opponent piece, try again: "
-          pos = choose_position
         end
+        puts "Choose a valid piece: "
+        pos = choose_position
       end
       board.get_piece(pos)
     end
 
     def valid_piece?(pos, player)
-      return false if board.tile_at(pos).empty?
-      piece = board.get_piece(pos)
-      return true if piece.color == player.color 
+      return false if board.tile_at(pos).empty? 
+      piece = board.get_piece(pos) 
+      return true if piece.color == player.color && piece.allowed_moves(board) != []
+      false
     end
     
     def choose_position
