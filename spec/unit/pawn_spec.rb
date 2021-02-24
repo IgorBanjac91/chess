@@ -28,5 +28,17 @@ module Chess
         end
       end
     end
+
+    describe '#move_to' do 
+      it 'moves more than one time' do 
+        board = Board.new
+        board.arrange_pieces
+        pawn = board.get_piece([0, 1])
+        pawn.move_to(board, [0, 2])
+        pawn = board.get_piece([0, 2])
+        pawn.move_to(board, [0, 3])
+        expect(board.tile_at([0, 3])).to_not be_empty
+      end
+    end
   end
 end

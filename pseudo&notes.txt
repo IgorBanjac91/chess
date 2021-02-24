@@ -68,3 +68,4 @@ I need to creae a tree of possible moves:
 Issues
   - If the pawn has an opponemt in front of him it can be choosen 
   - When an opponent take another pawn and puts the opponent in check, the taker dissapears 
+  - if a move a pawn one tail at the beginning the i cannot do more moves

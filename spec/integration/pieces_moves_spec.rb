@@ -43,6 +43,7 @@ module Chess
             expect(moves).to contain_exactly [2, 3], [2, 2], [1, 2], [3, 2]
           end
         end
+
       end
       
       context "when is black" do 

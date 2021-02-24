@@ -20,9 +20,9 @@ module Chess
             "#{opponent} wins!"
             break 
           else
+            board.display
             puts "#{player.color}, you're under check!! " 
             puts "#{player.color}, choose a piece: "
-            board.display
             piece = choose_piece(player)
             until off_check_moves?(piece)
               puts "Choose a valid piece to off check"
@@ -46,6 +46,7 @@ module Chess
     def make_move(piece)
       pos = choose_position
       until  piece.allowed_moves(board).include?(pos) && off_check_move?(piece, pos)
+        puts "Invalid move, try again.."
         pos = choose_position
       end
       piece.move_to(board, pos)
@@ -111,16 +112,27 @@ module Chess
     end
 
     def off_check_move?(piece, move)
-      old_x = piece.position[0]
-      old_y = piece.position[1]
+      opponent = nil
+      old_x, old_y = piece.position[0], piece.position[1]
+      new_x, new_y = move[0], move[1]
+      unless board.tile_at([new_x, new_y]).empty?
+        opponent = board.get_piece([new_x, new_y])
+      end
       piece.move_to(board, move)
       if check_to?(piece.color)
+        unless opponent.nil?
+          board.grid[new_x][new_y].content = opponent
+        end
         piece.move_to(board, [old_x, old_y])
         return false
       else
+        unless opponent.nil?
+          board.grid[new_x][new_y].content = opponent
+        end
         piece.move_to(board, [old_x, old_y])
         return true
       end
+
     end
 
     def off_check_moves?(piece)
