@@ -120,16 +120,15 @@ module Chess
       end
       piece.move_to(board, move)
       if check_to?(piece.color)
-        unless opponent.nil?
-          board.grid[new_x][new_y].content = opponent
-        end
         piece.move_to(board, [old_x, old_y])
+        board.grid[new_x][new_y].content = opponent unless opponent == nil 
         return false
       else
-        unless opponent.nil?
-          board.grid[new_x][new_y].content = opponent
-        end
+        # unless opponent.nil?
+        #   board.grid[new_x][new_y].content = opponent
+        # end
         piece.move_to(board, [old_x, old_y])
+        board.grid[new_x][new_y].content = opponent unless opponent == nil 
         return true
       end
 
