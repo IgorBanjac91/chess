@@ -59,7 +59,7 @@ module Chess
         return true if position[1] == 6
       end
     end
-
+    
   end
 end
 

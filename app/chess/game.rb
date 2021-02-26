@@ -124,9 +124,6 @@ module Chess
         board.grid[new_x][new_y].content = opponent unless opponent == nil 
         return false
       else
-        # unless opponent.nil?
-        #   board.grid[new_x][new_y].content = opponent
-        # end
         piece.move_to(board, [old_x, old_y])
         board.grid[new_x][new_y].content = opponent unless opponent == nil 
         return true
@@ -144,7 +141,13 @@ module Chess
     def opponent(player)
       player.color == :white ? "Black" : "White"
     end
-
+    
+    def pawns_at_opposite_edge?
+      board.grid.each do |col|
+        return true if col[0].black_pawn? || col[7].white_pawn?
+      end
+      false
+    end
 
     private
 
@@ -154,6 +157,7 @@ module Chess
         y = string.chars[1].to_i - 1
         coordinates = [x, y]
       end
+
 
   end
 end

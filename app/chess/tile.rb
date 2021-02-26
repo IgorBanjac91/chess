@@ -10,5 +10,22 @@ module Chess
     def empty?
       return true if content == " "
     end
+
+    def black_pawn?
+      if content.instance_of?(Pawn)
+        return true if content.color == :black 
+      end
+      false
+    end
+
+    def white_pawn?
+      if content.instance_of?(Pawn)
+        return true if content.color == :white 
+      end
+      false
+    end
+
+
+
   end
 end

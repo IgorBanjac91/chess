@@ -24,6 +24,7 @@ module Chess
       end
       puts "  " + ("a".."h").to_a.join(" ")
     end
+
     
     def arrange_pieces
       arrange_pawns
@@ -33,7 +34,7 @@ module Chess
       arrange_kings
       arrange_queens
     end
-    
+
     def black_piece?(coordinates)
       x, y = coordinates[0], coordinates[1]
       tail = grid[x][y]

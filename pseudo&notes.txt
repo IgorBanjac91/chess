@@ -19,7 +19,6 @@ I need to creae a tree of possible moves:
   - It can move inline, 4 possible directions
 
   BISHOP
-  - allowed moves, 
 
   QUEEN 
   - #allowed_move, can move like a bishop and a rook, I moved the movement logic the the superclass Pice
@@ -63,9 +62,7 @@ I need to creae a tree of possible moves:
     else
     Repeat again
       
-
-
-Issues
-  - If the pawn has an opponemt in front of him it can be choosen 
-  - When an opponent take another pawn and puts the opponent in check, the taker dissapears 
-  - if a move a pawn one tail at the beginning the i cannot do more moves
+Switch pawn with another piece
+ - when reached the opposide side of the board
+   Switch with a previously taken piece
+   ( This logic goes after ehac move )

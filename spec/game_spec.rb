@@ -94,19 +94,27 @@ module Chess
       end
     end
 
-    describe '#make_move' do 
+    describe "#pawns_at_opposite_edge?" do 
 
-      context "when the move is valid" do 
-        it 'moves a piece and lefts an empty space' do 
-          board.arrange_pieces
-          piece = board.get_piece([0, 1])
-          allow(game).to receive(:choose_position).and_return([0, 1])
-          game.make_move([0, 4])
-          expect(board.grid[0, 1]).to be_empty
-          expect(baord.get_piece([0, 4])).to be piece
-        end
+      it 'returns ture if black pawn at line 1' do 
+        board.set_piece(Pawn, :black, [0, 0]) 
+        expect(game.pawns_at_opposite_edge?).to be true
+      end
+
+      it 'returns ture if white pawn at line 8' do 
+        board.set_piece(Pawn, :white, [0, 7]) 
+        expect(game.pawns_at_opposite_edge?).to be true
+      end
+      
+      it 'returns false if black pawn not at line 1 ' do 
+        board.set_piece(Pawn, :black, [2, 4]) 
+        expect(game.pawns_at_opposite_edge?).to be false
+      end
+
+      it 'returns false if black pawn not at line 1 ' do 
+        board.set_piece(Pawn, :white, [5, 2]) 
+        expect(game.pawns_at_opposite_edge?).to be false
       end
     end
-
   end
 end
